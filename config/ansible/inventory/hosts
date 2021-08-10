@@ -15,4 +15,4 @@
 # that functionality and more, then uncomment your hostname below.
 
 [debops_all_hosts]
-#lark ansible_host=lark.turiya.dev ansible_connection=local
+example ansible_host=example.project.local ansible_connection=local
