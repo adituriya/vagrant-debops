@@ -1,2 +1,2 @@
 ---
-dhparam__bits: '1024'
+dhparam__bits: ['1024']
