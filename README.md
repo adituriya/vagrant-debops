@@ -15,16 +15,10 @@ plus a full stack of systems-level roles,
 including your own public key infrastructure, secure secrets storage, and over a dozen
 ready-to-deploy applications (Gitlab, DokuWiki, Etherpad, Nextcloud...).
 
-Plus, it is highly extensible: if your project requires something
+It is self-documenting, and highly extensible: if your project requires something
 that resides outside the DebOps ecosystem,
 you can write your own Ansible roles (or use third-party roles)
 and include them in your DebOps playbook(s).
-
-Besides providing a consistent and reasonably secure way of provisioning server environments,
-and of sharing development environments with other developers,
-this leads to a self-documenting specification of your project's
-server requirements (whether or not you also use DebOps to provision
-your production infrastructure).
 
 ## Project Layout
 
