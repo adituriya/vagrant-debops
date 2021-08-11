@@ -1,4 +1,4 @@
-# Vagrant-DebOps Starter Project
+# Vagrant-DebOps Project Template
 
 This is a project template for running arbitrary code (whatever you create)
 on a local Vagrant box configured using DebOps.
@@ -22,18 +22,13 @@ you can write your own Ansible roles (or use third-party roles).
 
 `./config` contains the DebOps project. It is where you
 define your dev server environment(s).
-Mapped to `/home/vagrant/debops` on the guest VM,
+It gets mapped to `/home/vagrant/debops` on the guest VM,
 which is where you will run `debops`.
 
 `./src` contains your source code (to be written),
 and an example `Vagrantfile` (to be modified).
-Mapped to `/vagrant` on the guest VM,
+It gets mapped to `/vagrant` on the guest VM,
 which is where your project will be served from.
-
-If all goes well (see Configuration, below), DebOps will run as part of the initial
-provisioning, the first time you `vagrant up`. Subsequently,
-you can use `vagrant ssh` to connect to the instance,
-then `cd debops && debops` (details below).
 
 ## Installation
 
@@ -111,8 +106,8 @@ bring up the instance by navigating to the `src` directory and running
 vagrant up
 ```
 
-The first time around, this will take around 10 minutes.
-Subsequent runs will be significantly faster. Once the instance is up,
+The first time, this will take around 10 minutes to run.
+Subsequent runs will be faster. Once the instance is up,
 if you need to re-run `debops` (say you updated your configuration), then
 
 ```
