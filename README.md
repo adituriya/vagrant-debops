@@ -9,17 +9,17 @@ of software applications and computing environments.
 
 [DebOps](https://docs.debops.org/) currently includes approximately 180 Ansible roles, about
 30% of which are run by default on all hosts (as part of the DebOps
-`common` playbook). In addition to providing a rock-solid base server configuration,
-it includes roles for application environments built using
+`common` playbook). In addition to providing a rock-solid, easily customized
+base server configuration, it includes roles for application environments built using
 Python, PHP, Ruby, NodeJS, Java, Go, R, Neurodebian, WP-CLI, Elasticsearch, MariaDB,
-PostgreSQL, Redis, Nginx, Apache, GUnicorn, FCGI, Docker, (and more),
+PostgreSQL, Redis, Nginx, Apache, GUnicorn, Docker, (and more),
 plus a full stack of systems-level configuration roles,
 including your own PKI infrastructure, secure secrets storage, and over a dozen
-complete ready to deploy applications (Gitlab, DokuWiki, Etherpad, Nextcloud...).
+ready-to-deploy applications (Gitlab, DokuWiki, Etherpad, Nextcloud...).
 
-The possibilities are virtually limitless, you can use any language, any framework,
-any tech stack&mdash;anything that runs on Debian (or Ubuntu) and is either
-supported directly by [DebOps](https://docs.debops.org/) or configurable as a custom [Ansible](https://docs.ansible.com/ansible/latest/index.html) role.
+Plus, it is highly extensible: if your project requires something else,
+you can write your own Ansible roles (or use third-party roles) and include
+these in your DebOps playbook(s).
 
 ## Project Layout
 
@@ -138,7 +138,7 @@ configuration parameters in `config/ansible/inventory/host_vars`
 and `config/ansible/inventory/group_vars`. Then, apply them
 by running `debops` on the Vagrant box.
 
-See (DebOps documentation)[https://docs.debops.org/en/master/ansible/roles/index.html]
+See (DebOps roles documentation)[https://docs.debops.org/en/master/ansible/roles/index.html]
 for details on available roles and configuration variables.
 
 Finally, when you are done with your session,
