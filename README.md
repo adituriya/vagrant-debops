@@ -4,19 +4,27 @@ This is a project template for running arbitrary code (whatever you create)
 on a local Vagrant box configured using DebOps.
 
 Although this limits you to Debian and Ubuntu operating systems
-and the general capabilities of Vagrant, Ansible and DebOps,
+and the general capabilities of Vagrant and DebOps (Ansible),
 this already provides everything you need to deploy a very wide array
 of applications and computing environments.
 
-[DebOps](https://docs.debops.org/) includes roles for
+[DebOps](https://docs.debops.org/) currently includes roles for configuring
 Python, PHP, Ruby, NodeJS, Java, Go, R, Neurodebian, WP-CLI, Elasticsearch, MariaDB,
 PostgreSQL, Redis, Nginx, Apache, GUnicorn, Docker, (and more),
-plus a full stack of systems-level configuration roles,
-including your own PKI infrastructure, secure secrets storage, and over a dozen
+plus a full stack of systems-level roles,
+including your own public key infrastructure, secure secrets storage, and over a dozen
 ready-to-deploy applications (Gitlab, DokuWiki, Etherpad, Nextcloud...).
 
-Plus, it is highly extensible: if your project requires something else,
-you can write your own Ansible roles (or use third-party roles).
+Plus, it is highly extensible: if your project requires something
+that resides outside the DebOps ecosystem,
+you can write your own Ansible roles (or use third-party roles)
+and include them in your DebOps playbook(s).
+
+Besides providing a consistent and reasonably secure way of provisioning server environments,
+and of sharing development environments with other developers,
+this leads to a self-documenting specification of your project's
+server requirements (whether or not you also use DebOps to provision
+your production infrastructure).
 
 ## Project Layout
 
@@ -106,8 +114,10 @@ bring up the instance by navigating to the `src` directory and running
 vagrant up
 ```
 
-The first time, this will take around 10 minutes to run.
-Subsequent runs will be faster. Once the instance is up,
+The first time, this will take around 10 minutes to run,
+as it will update the base system, install DebOps and run
+the DebOps `common` playbook.
+Subsequent runs will be faster. Once the instance is up and running,
 if you need to re-run `debops` (say you updated your configuration), then
 
 ```
@@ -115,17 +125,18 @@ vagrant ssh
 cd debops
 ```
 
-From there you can apply your current configuration by running
+and from there you can apply your current configuration by running
 
 ```
 debops
 ```
 
-with any additional arguments needed (you can limit the run
-to a given host, group or role, for example).
+optionally with additional arguments to limit the run
+to a given host, group, role or tag (i.e. using the `-l` or `-t` options;
+see [`ansible-playbook` documentation](https://docs.ansible.com/ansible/latest/cli/ansible-playbook.html) for details, as `debops` simply proxies `ansible-playbook`).
 
-The intended workflow is to define your project's
-server requirements by enabling DebOps roles in
+The intended workflow is to provision your project's
+required server components by enabling the corresponding DebOps roles in
 `config/ansible/inventory/hosts` and specifying their
 configuration parameters in `config/ansible/inventory/host_vars`
 and `config/ansible/inventory/group_vars`. Then, apply them
@@ -133,6 +144,8 @@ by running `debops` on the Vagrant box.
 
 See [DebOps roles documentation](https://docs.debops.org/en/master/ansible/roles/index.html)
 for details on available roles and configuration variables.
+
+## Shutting down
 
 Finally, when you are done with your session,
 
