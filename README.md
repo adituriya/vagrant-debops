@@ -1,49 +1,54 @@
 # Vagrant-DebOps Starter Project
 
-This is a barebones starter project that runs
-on a local Vagrant box functioning as its own
-DebOps controller, ready to configure as needed
-for your new development project.
+This is a barebones project that runs arbitrary code (whatever you create)
+on a local Vagrant box (or cluster) configured using DebOps.
+Although this limits you to Debian and Ubuntu operating systems
+and the general capabilities of Vagrant, Ansible and Debops,
+this in itself provides everything you need to deploy a very wide array
+of software applications and computing environments.
 
-Almost anything is possible, you can use any language, any framework,
+[DebOps](https://docs.debops.org/) currently includes approximately 180 Ansible roles, about
+30% of which are run by default on all hosts (as part of the DebOps
+`common` playbook). In addition to providing a rock-solid base server configuration,
+it includes roles for application environments built using
+Python, PHP, Ruby, NodeJS, Java, Go, R, Neurodebian, WP-CLI, Elasticsearch, MariaDB,
+PostgreSQL, Redis, Nginx, Apache, GUnicorn, FCGI, Docker, (and more),
+plus a full stack of systems-level configuration roles,
+including your own PKI infrastructure, secure secrets storage, and over a dozen
+complete ready to deploy applications (Gitlab, DokuWiki, Etherpad, Nextcloud...).
+
+The possibilities are virtually limitless, you can use any language, any framework,
 any tech stack&mdash;anything that runs on Debian (or Ubuntu) and is either
 supported directly by [DebOps](https://docs.debops.org/) or configurable as a custom [Ansible](https://docs.ansible.com/ansible/latest/index.html) role.
-
-In the end, you will have a clearly defined set of server requirements,
-providing anyone who clones your project a consistent, reproducible
-dev environment while also specifying unambiguously what is required of
-staging and production servers (whether or not they get provisioned using DebOps).
-
-See [Provisioning a Local Dev Box using Debops and Vagrant](https://code.turiya.dev/provisioning-a-local-dev-box-using-debops-and-vagrant) for a
-walkthrough on how to get this running on your local machine.
 
 ## Project Layout
 
 `./config` contains the DebOps project. It is where you
-will define your dev server environment(s). This folder
+define your dev server environment(s). This folder
 will be mounted to the guest VM as `/home/vagrant/debops`
-which is consequently where you will run `debops`.
+which consequently is where you will run `debops`.
 
 `./src` contains your source code (to be written),
 and an example `Vagrantfile` (to be modified).
 This folder gets mounted to the guest VM as `/vagrant`,
-which is where your project will be hosted (bear this
-in mind when configuring your application).
+which is where your project will be served from.
 
-If all goes well (is well configured), DebOps will run as part of the initial
+If all goes well, DebOps will run as part of the initial
 provisioning, the first time you `vagrant up`. Subsequently,
-you will use `vagrant ssh` to connect to the instance,
+you can use `vagrant ssh` to connect to the instance,
 then `cd debops && debops` (details below).
 
 ## Installation
 
-To set up a new project,
+To set up a new project, open a terminal and change to the parent
+directory where you want to create a new project, then
 
 ```
-git clone https://www.github.com/adituriya/vagrant-debops example
+git clone https://www.github.com/adituriya/vagrant-debops
 ```
 
-changing `example` to your preferred project directory name.
+If you want the project to be named something other than `vagrant-debops`,
+then add your preferred directory name to the end of the git clone command.
 
 ## Configuration
 
@@ -102,19 +107,13 @@ is any unused IP address on your local network.
 ## Usage
 
 Once all three steps above are complete, commit your changes and
-bring up the instance by navigating to the `src` directory
-
-```
-cd example/src
-```
-
-and running
+bring up the instance by navigating to the `src` directory and running
 
 ```
 vagrant up
 ```
 
-The first time around, it will take around 10 minutes to run.
+The first time around, this will take around 10 minutes.
 Subsequent runs will be significantly faster. Once the instance is up,
 if you need to re-run `debops` (say you updated your configuration), then
 
@@ -123,27 +122,26 @@ vagrant ssh
 cd debops
 ```
 
-From there you can run
+From there you can apply your current configuration by running
 
 ```
 debops
 ```
 
 with any additional arguments needed (you can limit the run
-to a given host, group or tag, for example). This will apply
-your current configuration to the Vagrant box.
+to a given host, group or role, for example).
 
-The intended workflow is that you define your project's
+The intended workflow is to define your project's
 server requirements by enabling DebOps roles in
 `config/ansible/inventory/hosts` and specifying their
 configuration parameters in `config/ansible/inventory/host_vars`
 and `config/ansible/inventory/group_vars`. Then, apply them
 by running `debops` on the Vagrant box.
 
-See (DebOps documentation)[https://debops.org] for full
-details on available roles and configuration variables.
+See (DebOps documentation)[https://docs.debops.org/en/master/ansible/roles/index.html]
+for details on available roles and configuration variables.
 
-Finally, when you are done for the day,
+Finally, when you are done with your session,
 
 ```
 vagrant halt
@@ -155,4 +153,4 @@ to shut down the instance, or
 vagrant destroy
 ```
 
-to completely remove the instance from your computer.
+to remove the instance from your computer.
