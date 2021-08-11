@@ -5,7 +5,7 @@ on a local Vagrant box configured using DebOps.
 
 Although this limits you to Debian and Ubuntu operating systems
 and the general capabilities of Vagrant and DebOps (Ansible),
-this already provides everything you need to deploy a very wide array
+it provides everything you need to deploy a very wide array
 of applications and computing environments.
 
 [DebOps](https://docs.debops.org/) currently includes roles for configuring
