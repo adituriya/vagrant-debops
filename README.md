@@ -44,11 +44,12 @@ To set up a new project, open a terminal and change to the parent
 directory where you want to create a new project, then
 
 ```
-git clone https://www.github.com/adituriya/vagrant-debops
+git clone https://github.com/adituriya/vagrant-debops.git
 ```
 
 If you want the project to be named something other than `vagrant-debops`,
-then add your preferred directory name to the end of the git clone command.
+then add your preferred directory name (following a space)
+at the end of the git clone command.
 
 ## Configuration
 
