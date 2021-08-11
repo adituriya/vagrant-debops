@@ -1,11 +1,11 @@
 # Vagrant-DebOps Starter Project
 
-This is a barebones project that runs arbitrary code (whatever you create)
+This is a project template for running arbitrary code (whatever you create)
 on a local Vagrant box configured using DebOps.
 
 Although this limits you to Debian and Ubuntu operating systems
-and the general capabilities of Vagrant, Ansible and Debops,
-this in itself provides everything you need to deploy a very wide array
+and the general capabilities of Vagrant, Ansible and DebOps,
+this already provides everything you need to deploy a very wide array
 of applications and computing environments.
 
 [DebOps](https://docs.debops.org/) includes roles for
@@ -104,7 +104,7 @@ is any unused IP address on your local network.
 
 ## Usage
 
-Once all three steps above are complete, commit your changes and
+Once the three steps above are complete, commit your changes and
 bring up the instance by navigating to the `src` directory and running
 
 ```
