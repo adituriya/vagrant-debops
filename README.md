@@ -1,16 +1,14 @@
 # Vagrant-DebOps Starter Project
 
 This is a barebones project that runs arbitrary code (whatever you create)
-on a local Vagrant box (or cluster) configured using DebOps.
+on a local Vagrant box configured using DebOps.
+
 Although this limits you to Debian and Ubuntu operating systems
 and the general capabilities of Vagrant, Ansible and Debops,
 this in itself provides everything you need to deploy a very wide array
-of software applications and computing environments.
+of applications and computing environments.
 
-[DebOps](https://docs.debops.org/) currently includes approximately 180 Ansible roles, about
-30% of which are run by default on all hosts (as part of the DebOps
-`common` playbook). In addition to providing a rock-solid, easily customized
-base server configuration, it includes roles for application environments built using
+[DebOps](https://docs.debops.org/) includes roles for
 Python, PHP, Ruby, NodeJS, Java, Go, R, Neurodebian, WP-CLI, Elasticsearch, MariaDB,
 PostgreSQL, Redis, Nginx, Apache, GUnicorn, Docker, (and more),
 plus a full stack of systems-level configuration roles,
@@ -18,30 +16,29 @@ including your own PKI infrastructure, secure secrets storage, and over a dozen
 ready-to-deploy applications (Gitlab, DokuWiki, Etherpad, Nextcloud...).
 
 Plus, it is highly extensible: if your project requires something else,
-you can write your own Ansible roles (or use third-party roles) and include
-these in your DebOps playbook(s).
+you can write your own Ansible roles (or use third-party roles).
 
 ## Project Layout
 
 `./config` contains the DebOps project. It is where you
-define your dev server environment(s). This folder
-will be mounted to the guest VM as `/home/vagrant/debops`
-which consequently is where you will run `debops`.
+define your dev server environment(s).
+Mapped to `/home/vagrant/debops` on the guest VM,
+which is where you will run `debops`.
 
 `./src` contains your source code (to be written),
 and an example `Vagrantfile` (to be modified).
-This folder gets mounted to the guest VM as `/vagrant`,
+Mapped to `/vagrant` on the guest VM,
 which is where your project will be served from.
 
-If all goes well, DebOps will run as part of the initial
+If all goes well (see Configuration, below), DebOps will run as part of the initial
 provisioning, the first time you `vagrant up`. Subsequently,
 you can use `vagrant ssh` to connect to the instance,
 then `cd debops && debops` (details below).
 
 ## Installation
 
-To set up a new project, open a terminal and change to the parent
-directory where you want to create a new project, then
+To create a new project using this template, open a terminal and change to the parent
+directory where you want to create the project, then
 
 ```
 git clone https://github.com/adituriya/vagrant-debops.git
@@ -139,7 +136,7 @@ configuration parameters in `config/ansible/inventory/host_vars`
 and `config/ansible/inventory/group_vars`. Then, apply them
 by running `debops` on the Vagrant box.
 
-See (DebOps roles documentation)[https://docs.debops.org/en/master/ansible/roles/index.html]
+See [DebOps roles documentation](https://docs.debops.org/en/master/ansible/roles/index.html)
 for details on available roles and configuration variables.
 
 Finally, when you are done with your session,
